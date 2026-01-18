@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trustless AI Agent — Gemini × USDC × Arc</title>
+  <link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+  <div class="top-controls dark-top">
+    <button id="btnBalancesTop" class="btn ghost top-btn">Check Balances</button>
+    <div id="balancesBox" class="balances-box"><div id="balancesContent">Balances will appear here</div></div>
+  </div>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>Trustless AI Agent</h1>
+        <p class="sub">Gemini decides pricing → backend enforces → Circle wallet pays USDC → settles on Arc</p>
+      </div>
+      <div class="pill">Local Demo</div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>1) Paste Text</h2>
+        <textarea id="text" placeholder="Paste your text here..."></textarea>
+
+        <div class="row">
+          <button id="btnQuote" class="btn secondary">Get Quote</button>
+          <button id="btnRun" class="btn">Run + Pay</button>
+          <button id="btnClear" class="btn ghost">Clear</button>
+        </div>
+
+        <div class="quoteBox" id="quoteBox">
+          <div class="quoteTitle">Quote</div>
+          <div id="quoteLine" class="muted">Click “Get Quote” to see complexity & price.</div>
+        </div>
+
+        <div class="hint">
+          Tip: short text → free, long/complex text → paid. (Pricing is enforced on backend.)
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2) Result</h2>
+
+        <div id="status" class="status muted">Idle</div>
+
+        <div class="resultTop">
+          <div class="metric">
+            <div class="label">Complexity</div>
+            <div id="mComplexity" class="value">—</div>
+          </div>
+          <div class="metric">
+            <div class="label">Price (USDC)</div>
+            <div id="mPrice" class="value">—</div>
+          </div>
+          <div class="metric">
+            <div class="label">Payment</div>
+            <div id="mPaid" class="value">—</div>
+          </div>
+        </div>
+
+        <div class="monoBox">
+          <div class="monoTitle">Analysis</div>
+          <pre id="analysis">—</pre>
+        </div>
+
+        <div class="monoBox">
+          <div class="monoTitle">Transaction</div>
+          <div class="txRow">
+            <div class="txCol">
+              <div class="label">Transaction ID</div>
+              <div id="txId" class="mono">—</div>
+            </div>
+            <div class="txCol">
+              <div class="label">Explorer Link</div>
+              <a id="txLink" href="#" target="_blank" class="mono muted">—</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card full">
+        <h2>3) History</h2>
+        <div id="history" class="history"></div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Backend:</span> <span class="mono">http://localhost:3001</span>
+      <span class="dot">•</span>
+      <span>Endpoints:</span> <span class="mono">/quote</span>, <span class="mono">/run</span>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

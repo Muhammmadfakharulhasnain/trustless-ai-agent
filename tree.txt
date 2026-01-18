@@ -1,0 +1,21 @@
+trustless-agent/
+├─ commands.txt
+├─ readme.md
+├─ backend/
+│  ├─ .env
+│  ├─ package.json
+│  ├─ package-lock.json
+│  ├─ node_modules/
+│  ├─ scripts/
+│  │  ├─ init_circle.js
+│  │  └─ make_entity_ciphertext.js
+│  └─ src/
+│     ├─ circle.js
+│     ├─ gemini.js
+│     ├─ pricing.js
+│     ├─ server.js
+│     └─ utils.js
+└─ frontend/
+   ├─ app.css
+   ├─ app.js
+   └─ index.html

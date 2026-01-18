@@ -1,0 +1,46 @@
+cmd /c "cd /d d:\trustless-agent\backend && npm i axios"
+Push-Location d:\trustless-agent\backend; node scripts/make_entity_ciphertext.js; Pop-Location
+
+
+✅ ENTITY SECRET CIPHERTEXT (paste into Circle Console TEST env):        
+
+D+bOmlVUHNdtM4kDpBcVD/vv4CBUYwJmGLucAnorOl2uSSmTICNMpWOa7NiJFqtWiMaS5lYyfQg7i5iwKSlGLT/ORkrxxTzCKUIuO6ZBWG6QI23D3EsNGNjjKLQt04y2Yy2lppehleRMIP/xYJqECbwBZGyK/LPqEPTkRL1S9Jnm5MA4B5McyqeIp5jvP3j21ifxxFYfMS+63X6go4Q3aP9XQi9nSaqmeElnVhNB3uqgAjOlLmzUDLFjUOakHsnQ4QAbWEGvy8xDhMONO82GS0WM+NBoV+tdapYEC3/C3dUjHpbL/wXLISeEMm40mK5evIPkCiF5+9/5N1i8GjJoRtXsn1kDRi27Pqmon3ISLRZxOP4flp9yvcExEPYPyQl4wgO9oaEbWShsC4mB0mgKFfm4caec3usxzv5blwFzUo5PNHJPtIJ/cuJZPWrk4xOa24wBRBz8ln/Yd+vmMxuraZ18AIzMZrsduobLhOZLr+D3ZsKVoDs34OnrphLCg4bJPVCujECOnVcTRsR5Anc2plFNQAfvurUorqn6r9uiXxKro5nURugWqYArVQrOxXXSPlqK0Q1MT0ppOg4CWKYtjsWY8QzHu5aMeh2FK2irNs2O2vAY2VPts3JPsT45d4owmSPISQ4RqZ9ZdVxCcjnmm5282H/Yjbxsut9NSmO7pxo=
+
+Go to Circle Console → (TEST/Sandbox) → W3S/Wallets Configurator → Entity Secret → paste → Register/Set
+
+
+
+
+
+
+
+
+Push-Location d:\trustless-agent\backend; node scripts/init_circle.js; Pop-Location
+ Using existing CIRCLE_ENTITY_SECRET from .env
+
+1) Creating Wallet Set...
+✅ Wallet Set ID: b5c279d5-c68d-51de-be78-9de5143bbbd8
+
+2) Creating 2 wallets (agent + merchant)...
+
+✅ Agent Wallet:
+  ID: 5f9b1b4e-bd4e-5f63-b40d-33b176e3b95b
+  Address: 0xea5d6d891c6536cfa4c04f4cb548f65cf29498ca
+
+✅ Merchant Wallet:
+  Address: 0xf3a6936576378e5ffe3a2800c0cd5de9de426422
+  Address: 0xf3a6936576378e5ffe3a2800c0cd5de9de426422
+
+➡️ Paste these into your .env:
+CIRCLE_ENTITY_SECRET=c28941661a03bb4fda943bed86d937de4322a2775c1e840ca83d02d294b4017f
+CIRCLE_WALLET_SET_ID=b5c279d5-c68d-51de-be78-9de5143bbbd8
+CIRCLE_AGENT_WALLET_ID=5f9b1b4e-bd4e-5f63-b40d-33b176e3b95b
+CIRCLE_MERCHANT_WALLET_ID=b1d4e915-1f60-5b54-afac-682e11d0062a
+
+Next: Fund the AGENT wallet address using Arc testnet faucet, then run the app.
+PS D:\trustless-agent\backend> cd src 
+PS D:\trustless-agent\backend\src> npm run dev
+
+
+
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
