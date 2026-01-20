@@ -1,4 +1,4 @@
-const API = "https://trustless-ai-agent-production-9860.up.railway.app";
+const API = "trustless-ai-agent-production-9860.up.railway.app";
 
 const el = (id) => document.getElementById(id);
 
