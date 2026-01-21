@@ -17,7 +17,11 @@ import {
 const app = express();
 
 const corsOrigin = process.env.CORS_ORIGIN || "*";
-app.use(cors({ origin: corsOrigin }));
+app.use(cors({ origin: corsOrigin,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+
+}));
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/health", (_, res) => res.json({ ok: true }));
