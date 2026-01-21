@@ -149,7 +149,7 @@ app.get("/status/:id", async (req, res) => {
    ✅ BALANCES ENDPOINT (Agent + Merchant)
 ========================= */
 
-/*app.get("/wallets/balances", async (_req, res) => {
+app.get("/wallets/balances", async (_req, res) => {
   try {
     const data = await getAgentAndMerchantBalancesRest();
     return res.json(data);
@@ -164,24 +164,3 @@ app.get("/status/:id", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
-*/
-
-app.get("/wallets/balances", (_req, res) => {
-  try {
-    res.setHeader(
-      "Access-Control-Allow-Origin",
-      process.env.CORS_ORIGIN || "*"
-    );
-
-    return res.json({
-      status: "backend_alive",
-      agentWallet: process.env.CIRCLE_AGENT_WALLET_ID || null,
-      merchantWallet: process.env.CIRCLE_MERCHANT_WALLET_ID || null,
-      note: "Circle balance fetching temporarily disabled for demo stability"
-    });
-  } catch (e) {
-    return res.status(500).json({
-      error: "Backend failed before balances"
-    });
-  }
-});
