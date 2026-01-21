@@ -17,11 +17,7 @@ import {
 const app = express();
 
 const corsOrigin = process.env.CORS_ORIGIN || "*";
-app.use(cors({ origin: corsOrigin,
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-
-}));
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/health", (_, res) => res.json({ ok: true }));
@@ -164,5 +160,3 @@ app.get("/wallets/balances", async (_req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
-
-
