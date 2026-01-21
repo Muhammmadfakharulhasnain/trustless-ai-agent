@@ -174,12 +174,14 @@ app.get("/wallets/balances", (_req, res) => {
     );
 
     return res.json({
-      status: "demo_alive",
-      agentWallet: process.env.CIRCLE_AGENT_WALLET_ID || "stub_agent_wallet",
-      merchantWallet: process.env.CIRCLE_MERCHANT_WALLET_ID || "stub_merchant_wallet",
-      note: "Balance fetching disabled for demo stability"
+      status: "backend_alive",
+      agentWallet: process.env.CIRCLE_AGENT_WALLET_ID || null,
+      merchantWallet: process.env.CIRCLE_MERCHANT_WALLET_ID || null,
+      note: "Circle balance fetching temporarily disabled for demo stability"
     });
   } catch (e) {
-    return res.status(500).json({ error: "Backend failed before returning balances" });
+    return res.status(500).json({
+      error: "Backend failed before balances"
+    });
   }
 });
