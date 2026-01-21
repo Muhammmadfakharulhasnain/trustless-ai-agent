@@ -149,27 +149,15 @@ app.get("/status/:id", async (req, res) => {
    ✅ BALANCES ENDPOINT (Agent + Merchant)
 ========================= */
 
-app.get("/wallets/balances", (_req, res) => {
+app.get("/wallets/balances", async (_req, res) => {
   try {
-    // Explicitly set CORS headers
-    const corsOrigin = process.env.CORS_ORIGIN || "*";
-    res.setHeader("Access-Control-Allow-Origin", corsOrigin);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-    // Debug endpoint: return backend status and wallet IDs
-    const response = {
-      status: "backend_alive",
-      agentWallet: process.env.CIRCLE_AGENT_WALLET_ID || null,
-      merchantWallet: process.env.CIRCLE_MERCHANT_WALLET_ID || null
-    };
-
-    return res.json(response);
+    const data = await getAgentAndMerchantBalancesRest();
+    return res.json(data);
   } catch (e) {
     console.error("SERVER ERROR FULL (/wallets/balances):", e);
-    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "*");
-    return res.status(500).json({
-      error: "Backend failed before balances"
+    return res.status(e?.status || 502).json({
+      error: e?.message || "Balances fetch failed",
+      details: e?.details || e?.data || null
     });
   }
 });
